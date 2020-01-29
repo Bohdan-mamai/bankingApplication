@@ -14,13 +14,13 @@ public class CreditCard extends Card {
         double totalBalance = balance + limit;
 
         if (amount > balance) {
-            calculateFee(amount, balance, limit);
+            calculateFee(amount);
             negativeAmount = amount - balance;
             limit -= negativeAmount;
             totalBalance -= (totalFee + amount);
             return (long) totalBalance;
         } else if (amount < balance) {
-            double calculateFeeValue = calculateFee(amount, balance, limit);
+            double calculateFeeValue = calculateFee(amount);
             balance -= amount;
             balance -= calculateFeeValue;
             return balance;
@@ -31,7 +31,7 @@ public class CreditCard extends Card {
     }
 
 
-    public long calculateFee(long amount, long balance, long limit) {
+    public long calculateFee(long amount) {
 
         double feeDebitPercent = 0.01;
         double feeCreditPercent = 0.05;

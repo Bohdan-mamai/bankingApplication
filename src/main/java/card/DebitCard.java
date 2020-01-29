@@ -8,22 +8,23 @@ public class DebitCard extends Card {
     }
 
     public long withdrawMoney(long amount) throws Exception {
-        if (amount <= balance) {
+        if (amount < balance) {
+            double calculateFeeValue = calculateFee(amount);
             balance -= amount;
-            calculateFee(amount,balance,limit);
-            balance -= calculateFee(amount,balance,limit);
+            balance -= calculateFeeValue;
+            return balance;
         } else {
             throw new Exception("You are a frog");
         }
-        return balance;
     }
 
-    public long calculateFee(long amount, long balance, long limit) {
+    public long calculateFee(long amount) {
         double feePercent = 0.01;
-        double fee = 0;
-        if (balance >= amount) {
-            fee = balance - (amount * feePercent);
+        double fee;
+        if (balance > amount) {
+            fee = amount * feePercent;
+            return (long) fee;
         }
-        return (long)fee;
+        return 0;
     }
 }

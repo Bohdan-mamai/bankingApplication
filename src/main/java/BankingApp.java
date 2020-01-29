@@ -1,4 +1,3 @@
-import card.Card;
 import card.CreditCard;
 import card.DebitCard;
 
@@ -9,7 +8,7 @@ public class BankingApp {
     public static void main(String[] args) throws Exception {
 
         DebitCard debitCard = new DebitCard(3000);
-        CreditCard creditCard = new CreditCard(0,20000);
+        CreditCard creditCard = new CreditCard(3000,20000);
 
         Scanner amountValue = new Scanner(System.in);
         System.out.println("Amount: ");
@@ -28,10 +27,10 @@ public class BankingApp {
             if (typeOfCard.equals("debit")){
                 switch(select){
                     case (1):
-                        System.out.println(debitCard.addMoney(amount));
+                        System.out.println("Your balance = " + debitCard.addMoney(amount));
                         break;
                     case (2):
-                        System.out.println(debitCard.withdrawMoney(amount));
+                        System.out.println("Your balance = " + debitCard.withdrawMoney(amount));
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + select);
@@ -39,11 +38,10 @@ public class BankingApp {
         }   else if (typeOfCard.equals("credit"))  {
             switch(select){
                 case (1):
-                    System.out.println(creditCard.addMoney(amount));
-                    break;
+                    System.out.println("Your balance = " + creditCard.addMoney(amount));
                 case (2):
-                    System.out.println(creditCard.withdrawMoney(amount));
-                    break;
+                    System.out.println("Your balance = " + creditCard.withdrawMoney(amount));
+
                 default:
                     throw new IllegalStateException("Unexpected value: " + select);
             }
