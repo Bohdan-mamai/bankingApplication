@@ -1,5 +1,6 @@
 import card.CreditCard;
 import card.DebitCard;
+import card.Subscriber;
 
 import java.util.Scanner;
 
@@ -10,38 +11,48 @@ public class BankingApp {
         DebitCard debitCard = new DebitCard(3000);
         CreditCard creditCard = new CreditCard(3000,20000);
 
+        Subscriber subscriber = new Subscriber("Mike");
+        creditCard.addSubscriber(subscriber);
+        debitCard.addSubscriber(subscriber);
+
+        System.out.println("Choose your card");
+        System.out.println("1. Debit card");
+        System.out.println("2. Credit card");
+
+        Scanner cardType = new Scanner(System.in);
+        System.out.println("Type of Card: ");
+        int typeOfCard = cardType.nextInt();
+
+        System.out.println("Choose your option");
+        System.out.println("1. Add to card");
+        System.out.println("2. Withdraw from card");
+        Scanner selectOption = new Scanner(System.in);
+        System.out.println("Option: ");
+        int select = selectOption.nextInt();
+
         Scanner amountValue = new Scanner(System.in);
         System.out.println("Amount: ");
         long amount = amountValue.nextLong();
 
-        Scanner cardType = new Scanner(System.in);
-        System.out.println("Type of Card: ");
-        String typeOfCard = cardType.nextLine();
-
-            System.out.println("Choose your option");
-            System.out.println("1. Add to card");
-            System.out.println("2. Withdraw from card");
-            Scanner selectOption = new Scanner(System.in);
-            System.out.println("Option: ");
-            int select = selectOption.nextInt();
-            if (typeOfCard.equals("debit")){
+            if (typeOfCard == 1){
                 switch(select){
                     case (1):
-                        System.out.println("Your balance = " + debitCard.addMoney(amount));
+                        debitCard.addMoney(amount);
                         break;
                     case (2):
-                        System.out.println("Your balance = " + debitCard.withdrawMoney(amount));
+                        debitCard.withdrawMoney(amount);
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + select);
                 }
-        }   else if (typeOfCard.equals("credit"))  {
+        }   else if (typeOfCard == 2)  {
             switch(select){
                 case (1):
-                    System.out.println("Your balance = " + creditCard.addMoney(amount));
+                    creditCard.addMoney(amount);
+                    break;
                 case (2):
-                    System.out.println("Your balance = " + creditCard.withdrawMoney(amount));
-
+                    creditCard.withdrawMoney(amount);
+                    break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + select);
             }
