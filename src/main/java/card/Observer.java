@@ -1,7 +1,6 @@
 package card;
 
-import java.util.List;
-
 public interface Observer {
-        public void handleEvent(String messageBalance);
+        void handleEvent(String messageBalance);
+        void printLog(String log);
 }

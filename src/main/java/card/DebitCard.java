@@ -5,18 +5,16 @@ import java.util.List;
 
 public class DebitCard extends Card implements Observed {
 
-    List<Observer> observers;
+    private List<Observer> observers;
 
     @Override
     public long addMoney(long amount) {
-        long tmpDebit = super.addMoney(amount);
-        this.notifySubscribers();
-        return tmpDebit;
+        return super.addMoney(amount);
     }
 
-    public DebitCard(long balance){
+    DebitCard(long balance) {
         this.balance = balance;
-        this.limit = 0;
+        limit = 0;
         this.observers = new ArrayList<Observer>();
     }
 
@@ -25,7 +23,6 @@ public class DebitCard extends Card implements Observed {
             double calculateFeeValue = calculateFee(amount);
             balance -= amount;
             balance -= calculateFeeValue;
-            this.notifySubscribers();
             return balance;
         } else {
             throw new Exception("You need more money on your cart");
@@ -51,8 +48,14 @@ public class DebitCard extends Card implements Observed {
     }
 
     public void notifySubscribers() {
-        for (Observer observer: observers) {
-            observer.handleEvent("your new balance = " + balance);
+        for (Observer observer : observers) {
+            observer.handleEvent("balance on your cart = " + balance + "\n");
+        }
+    }
+
+    void printLog(String log) {
+        for (Observer observer : observers) {
+            observer.printLog(log);
         }
     }
 }
