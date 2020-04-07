@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import static card.ConfigData.*;
 
-public class OpenATM {
+public class ProcessesATM {
 
     public void startATM() throws Exception {
 

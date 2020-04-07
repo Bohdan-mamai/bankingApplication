@@ -1,12 +1,12 @@
-import card.OpenATM;
+import card.ProcessesATM;
 
 
 public class BankingApp {
 
     public static void main(String[] args) throws Exception {
 
-        OpenATM openATM = new OpenATM();
-        openATM.startATM();
+        ProcessesATM processesATM = new ProcessesATM();
+        processesATM.startATM();
 
     }
 }
